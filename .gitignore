@@ -1,0 +1,7 @@
+*.docx
+report.pdf
+*.zip
+.vscode/*
+*/results/*
+*/predictions/*
+Source/*
