@@ -1,0 +1,54 @@
+{
+ "templeR0013": [
+  "templeR0015",
+  "templeR0042",
+  "templeR0044"
+ ],
+ "templeR0015": [
+  "templeR0013",
+  "templeR0017",
+  "templeR0042"
+ ],
+ "templeR0017": [
+  "templeR0015",
+  "templeR0019",
+  "templeR0021"
+ ],
+ "templeR0019": [
+  "templeR0017",
+  "templeR0021"
+ ],
+ "templeR0021": [
+  "templeR0017",
+  "templeR0019"
+ ],
+ "templeR0032": [
+  "templeR0034",
+  "templeR0036",
+  "templeR0044"
+ ],
+ "templeR0034": [
+  "templeR0032",
+  "templeR0036",
+  "templeR0038"
+ ],
+ "templeR0036": [
+  "templeR0032",
+  "templeR0034",
+  "templeR0038"
+ ],
+ "templeR0038": [
+  "templeR0034",
+  "templeR0036"
+ ],
+ "templeR0042": [
+  "templeR0013",
+  "templeR0015",
+  "templeR0044"
+ ],
+ "templeR0044": [
+  "templeR0013",
+  "templeR0032",
+  "templeR0042"
+ ]
+}
