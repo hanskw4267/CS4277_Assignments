@@ -6,3 +6,4 @@ networkx
 torch
 open3d
 scipy
+k3d
