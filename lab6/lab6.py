@@ -311,7 +311,12 @@ def post_process(ps_volume, inv_depth, accum_count):
     mask = np.ones(ps_volume.shape[1:], dtype=np.bool)
     inv_depth_image = np.zeros(ps_volume.shape[1:], dtype=np.float64)
     """ YOUR CODE STARTS HERE """
+    inv_depth_image = compute_depths(ps_volume, inv_depth)
+    mask = inv_depth_image <= np.mean(
+        inv_depth_image) + (2.5 * np.std(inv_depth_image))
+    inv_depth_image = scipy.ndimage.gaussian_filter(inv_depth_image, 2)
 
+    print(mask)
     """ YOUR CODE ENDS HERE """
 
     return inv_depth_image, mask
@@ -340,6 +345,27 @@ def unproject_depth_map(image, inv_depth_image, K, mask=None):
     rgb = np.zeros([0, 3], dtype=np.float64)  # values should be within (0, 1)
 
     """ YOUR CODE STARTS HERE """
+    f_x = K[0, 0]
+    f_y = K[1, 1]
+    c_x = K[0, 2]
+    c_y = K[1, 2]
+
+    x = np.linspace(0, image.shape[1] - 1, image.shape[1]).astype(np.int)
+    y = np.linspace(0, image.shape[0] - 1, image.shape[0]).astype(np.int)
+    xx, yy = np.meshgrid(x, y)
+    xx = (xx - c_x) / inv_depth_image / f_x
+    yy = (yy - c_y) / inv_depth_image / f_y
+
+    if mask is not None:
+        xx = xx * mask
+        yy = yy * mask
+        inv_depth_image = 1/inv_depth_image * mask
+    else:
+        inv_depth_image = 1/inv_depth_image
+
+    xyz = np.dstack((xx, yy, inv_depth_image))
+    xyz = xyz.reshape(-1, 3)
+    rgb = image.reshape(-1, 3)
 
     """ YOUR CODE ENDS HERE """
 

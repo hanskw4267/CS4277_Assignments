@@ -1,0 +1,7 @@
+x = np.linspace(0, image.shape[1] - 1, image.shape[1]).astype(np.int)
+y = np.linspace(0, image.shape[0] - 1, image.shape[0]).astype(np.int)
+xx, yy = np.meshgrid(x, y)
+print(xx.flatten().shape, yy.flatten().shape)
+xyz = np.vstack((xx.flatten(), yy.flatten(), np.ones_like(xx.flatten())))
+xyz = np.transpose(np.linalg.inv(K) @ xyz / inv_depth_image.flatten())
+rgb = image.reshape(-1, 3)
